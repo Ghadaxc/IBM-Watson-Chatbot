@@ -1,0 +1,436 @@
+{
+  "intents": [
+    {
+      "intent": "Ans",
+      "examples": [
+        {
+          "text": "Click on each intended direction to control the movement."
+        },
+        {
+          "text": "Robotic base"
+        },
+        {
+          "text": "Yes , they are saved in the database."
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Leen",
+      "examples": [
+        {
+          "text": "about leen"
+        },
+        {
+          "text": "whos leen"
+        },
+        {
+          "text": "why is your name leen"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "SAQ",
+      "examples": [
+        {
+          "text": "How does this panel work?"
+        },
+        {
+          "text": "how to use this panel?"
+        },
+        {
+          "text": "what is this panel"
+        },
+        {
+          "text": "what is used"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Thankyou",
+      "examples": [
+        {
+          "text": "Bye"
+        },
+        {
+          "text": "Ok thanks"
+        },
+        {
+          "text": "Thanks"
+        },
+        {
+          "text": "Thank u"
+        },
+        {
+          "text": "Thank you"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Time",
+      "examples": [
+        {
+          "text": "Can you you tell me the time?"
+        },
+        {
+          "text": "What is the time now?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Welcome",
+      "examples": [
+        {
+          "text": "get started"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "hii"
+        },
+        {
+          "text": "i dont"
+        },
+        {
+          "text": "i dont know"
+        },
+        {
+          "text": "i need help"
+        },
+        {
+          "text": "i want to know more"
+        },
+        {
+          "text": "I want to know more about this panel"
+        },
+        {
+          "text": "okay"
+        },
+        {
+          "text": "options"
+        },
+        {
+          "text": "start"
+        },
+        {
+          "text": "welcome"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "leen",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Hi",
+          "synonyms": [
+            "Hello",
+            "hey",
+            "heyyyyy",
+            "hii"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "leen",
+          "synonyms": [
+            "ai",
+            "assistant",
+            "chatbot"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-date",
+      "values": [],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-time",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    },
+    "from-sample": true
+  },
+  "webhooks": [
+    {
+      "url": "",
+      "name": "main_webhook",
+      "headers": []
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thats the best thing i heard all day, anything else?"
+              },
+              {
+                "text": "sorry i dont understand, I can answer any other questions you got."
+              },
+              {
+                "text": "i dont understand, can you rephrase your question?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_10_1625248926897",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Thank you",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Leen is happy to help :)"
+              },
+              {
+                "text": "I am happy to assist you."
+              },
+              {
+                "text": "Glad to help you :)"
+              },
+              {
+                "text": "Always here to help :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "#Thankyou",
+      "dialog_node": "node_10_1625248926897",
+      "previous_sibling": "node_5_1625249890260",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello ,I am you AI assistant Leen."
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          },
+          {
+            "values": [
+              {
+                "text": "How can I help you?"
+              },
+              {
+                "text": ""
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "random"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "node_2_1625247201068"
+    },
+    {
+      "type": "standard",
+      "title": "Time",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Time",
+      "dialog_node": "node_3_1625439323485",
+      "previous_sibling": "node_2_1625247201068"
+    },
+    {
+      "type": "standard",
+      "title": "about assistant",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "leen is here to help answer your questions."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#Leen",
+      "dialog_node": "node_5_1625249890260",
+      "previous_sibling": "node_8_1625247527835"
+    },
+    {
+      "type": "standard",
+      "title": "Hi",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "HEY :)"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "Would you like to know more about this control-panel?",
+            "options": [
+              {
+                "label": "What is it used for?",
+                "value": {
+                  "input": {
+                    "text": "Robotic base"
+                  }
+                }
+              },
+              {
+                "label": "Are last direction values saved?",
+                "value": {
+                  "input": {
+                    "text": "Yes , they are saved in the database."
+                  }
+                }
+              },
+              {
+                "label": "How to use it?",
+                "value": {
+                  "input": {
+                    "text": "Click on each intended direction to control the movement."
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#Welcome",
+      "dialog_node": "node_6_1625248264748",
+      "previous_sibling": "node_3_1625439323485"
+    },
+    {
+      "type": "standard",
+      "title": "SAQ",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "This is a panel for robotic base, Click on each intended direction to control the robot  base movement."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#SAQ",
+      "dialog_node": "node_8_1625247527835",
+      "previous_sibling": "node_6_1625248264748",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "standard",
+      "title": "Ans",
+      "parent": "node_6_1625248264748",
+      "conditions": "#Ans",
+      "dialog_node": "node_8_1625250913079",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "@sys-time"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1625439323485",
+      "conditions": "#Time",
+      "dialog_node": "response_10_1625439469063"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "ok leen"
+    }
+  ],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "intent_classification": {
+      "training_backend_version": "v2"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "user help",
+  "language": "en",
+  "description": ""
+}
